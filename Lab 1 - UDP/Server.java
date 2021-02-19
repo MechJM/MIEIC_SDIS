@@ -52,7 +52,7 @@ public class Server
                     String dnsName = requestElems[1];
                     String existingEntry = table.get(dnsName);
                     if (existingEntry == null) response = "NOT_FOUND";
-                    else response = existingEntry;
+                    else response = dnsName + " " + existingEntry;
                 }
 
                 //send reply
