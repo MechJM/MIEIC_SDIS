@@ -72,11 +72,12 @@ public class Server
                 socket.send(packet);
 
                 //print log
-                String log = new String("Server:");
+                String log = new String();
                 for (String elem : requestElems)
                 {
                     log += " " + elem;
                 }
+                log += " :: " + response;
                 System.out.println(log);
              }
 

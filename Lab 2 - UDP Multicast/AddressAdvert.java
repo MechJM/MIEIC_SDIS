@@ -10,11 +10,13 @@ public class AddressAdvert extends TimerTask
     private DatagramSocket socket;
     private byte[] buf;
     private InetAddress mcastAddress;
+    private int servicePort;
 
 
     AddressAdvert(DatagramSocket socket, InetAddress mcastAddress, int servicePort)
     {
         this.socket = socket;
+        this.servicePort = servicePort;
         String stringAddress = "";
         try
         {
@@ -36,6 +38,7 @@ public class AddressAdvert extends TimerTask
         try
         {
             socket.send(packet);
+            System.out.println("multicast: " + mcastAddress.getAddress() + " " + socket.getPort() + ": " + InetAddress.getLocalHost().getAddress() + " " + servicePort);
         }
         catch (IOException e)
         {
