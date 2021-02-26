@@ -62,11 +62,12 @@ public class Client
             socket.send(packet);
 
             //receive packet
+            buf = new byte[256];
             packet = new DatagramPacket(buf, buf.length);
             socket.receive(packet);
 
             //process response
-            response = new String(packet.getData(), 0 , packet.getLength());
+            response = new String(packet.getData());
 
             //close socket
             socket.close();
