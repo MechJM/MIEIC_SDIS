@@ -34,11 +34,11 @@ public class AddressAdvert extends TimerTask
     @Override
     public void run() 
     {
-        DatagramPacket packet = new DatagramPacket(buf, buf.length, mcastAddress, socket.getPort());
+        DatagramPacket packet = new DatagramPacket(buf, buf.length, mcastAddress, socket.getLocalPort());
         try
         {
             socket.send(packet);
-            System.out.println("multicast: " + mcastAddress.getAddress() + " " + socket.getPort() + ": " + InetAddress.getLocalHost().getAddress() + " " + servicePort);
+            System.out.println("multicast: " + mcastAddress.toString().split("/")[1] + " " + socket.getLocalPort() + ": " + InetAddress.getLocalHost().toString().split("/")[1] + " " + servicePort);
         }
         catch (IOException e)
         {

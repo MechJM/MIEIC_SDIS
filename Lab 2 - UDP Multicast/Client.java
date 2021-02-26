@@ -72,7 +72,7 @@ public class Client
         }
         catch (SocketException e)
         {
-            // e.printStackTrace();
+            e.printStackTrace();
             System.out.println("Couldn't setup socket!");
             response = "ERROR";
         }
