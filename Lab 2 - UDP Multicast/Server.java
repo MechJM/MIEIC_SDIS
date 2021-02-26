@@ -23,8 +23,8 @@ public class Server
         {
             //setting up mcast
             InetAddress mcastAddress = InetAddress.getByName(args[1]);
-            DatagramSocket mcastSocket = new DatagramSocket(mcastPort);
-            AddressAdvert advertTask = new AddressAdvert(mcastSocket, mcastAddress, port);
+            DatagramSocket mcastSocket = new DatagramSocket();
+            AddressAdvert advertTask = new AddressAdvert(mcastSocket, mcastAddress, port, mcastPort);
             Timer timer = new Timer(true);
             timer.scheduleAtFixedRate(advertTask, 0, 1000);
 

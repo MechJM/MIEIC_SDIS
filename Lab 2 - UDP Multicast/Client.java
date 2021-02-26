@@ -40,7 +40,7 @@ public class Client
             String[] splitMessage = mcastMessage.split(" ");
             String host = splitMessage[0];
             int port = Integer.parseInt(splitMessage[1]);
-            System.out.println("multicast: " + mcastAddr.getAddress() + " " + mcastPort + ": " + host + " " + port);
+            System.out.println("multicast: " + mcastAddr.toString().split("/")[1] + " " + mcastPort + ": " + host + " " + port);
             mcastSocket.leaveGroup(mcastAddr);
             mcastSocket.close();
 
@@ -67,6 +67,7 @@ public class Client
 
             //process response
             response = new String(packet.getData(), 0 , packet.getLength());
+
             //close socket
             socket.close();
         }

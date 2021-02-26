@@ -11,9 +11,10 @@ public class AddressAdvert extends TimerTask
     private byte[] buf;
     private InetAddress mcastAddress;
     private int servicePort;
+    private int mcastPort;
 
 
-    AddressAdvert(DatagramSocket socket, InetAddress mcastAddress, int servicePort)
+    AddressAdvert(DatagramSocket socket, InetAddress mcastAddress, int servicePort, int mcastPort)
     {
         this.socket = socket;
         this.servicePort = servicePort;
@@ -29,16 +30,17 @@ public class AddressAdvert extends TimerTask
         
         buf = (stringAddress.split("/")[1] + " " + servicePort).getBytes();
         this.mcastAddress = mcastAddress;
+        this.mcastPort = mcastPort;
     }
 
     @Override
     public void run() 
     {
-        DatagramPacket packet = new DatagramPacket(buf, buf.length, mcastAddress, socket.getLocalPort());
+        DatagramPacket packet = new DatagramPacket(buf, buf.length, mcastAddress, this.mcastPort);
         try
         {
             socket.send(packet);
-            System.out.println("multicast: " + mcastAddress.toString().split("/")[1] + " " + socket.getLocalPort() + ": " + InetAddress.getLocalHost().toString().split("/")[1] + " " + servicePort);
+            System.out.println("multicast: " + mcastAddress.toString().split("/")[1] + " " + mcastPort + ": " + InetAddress.getLocalHost().toString().split("/")[1] + " " + servicePort);
         }
         catch (IOException e)
         {
