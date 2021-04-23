@@ -22,6 +22,15 @@ public class SSLServer
 {
     public static void main(String[] args)
     {
+        System.setProperty("javax.net.ssl.keyStore", "server.keys");
+        System.setProperty("javax.net.ssl.keyStorePassword", "123456");
+        // System.setProperty("javax.net.ssl.keyStore", "client.keys");
+        // System.setProperty("javax.net.ssl.keyStorePassword", "123456");
+        System.setProperty("javax.net.ssl.trustStore", "client.keys");
+        System.setProperty("javax.net.ssl.trustStorePassword", "123456");
+        // System.setProperty("javax.net.ssl.trustStore", "truststore");
+        // System.setProperty("javax.net.ssl.trustStorePassword", "123456");
+
         //processing command line arg and setting up
         int port = Integer.parseInt(args[0]);
         Map<String,String> table = new HashMap<>();
@@ -79,7 +88,6 @@ public class SSLServer
                 }
                 System.out.println(log);
 
-                clientSocket.shutdownInput();
                 clientSocket.shutdownOutput();
                 clientSocket.close();
             }
@@ -96,6 +104,7 @@ public class SSLServer
         }
         catch (IOException e)
         {
+            e.printStackTrace();
             System.out.println(e.toString());
             System.out.println("Failed to read/write to/from socket!");
         }

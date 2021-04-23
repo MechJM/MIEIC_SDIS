@@ -18,6 +18,15 @@ public class SSLClient
 {
     public static void main(String[] args) throws IOException
     {
+        // System.setProperty("javax.net.ssl.keyStore", "server.keys");
+        // System.setProperty("javax.net.ssl.keyStorePassword", "123456");
+        System.setProperty("javax.net.ssl.keyStore", "client.keys");
+        System.setProperty("javax.net.ssl.keyStorePassword", "123456");
+        System.setProperty("javax.net.ssl.trustStore", "server.keys");
+        System.setProperty("javax.net.ssl.trustStorePassword", "123456");
+        // System.setProperty("javax.net.ssl.trustStore", "truststore");
+        // System.setProperty("javax.net.ssl.trustStorePassword", "123456");
+
         String response = new String();
         String message = new String();
         try
